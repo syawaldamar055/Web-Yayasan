@@ -1,0 +1,1369 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yayasan Darusalam - MAS AL MUSTOFAWIYAH & PKBM NURUL FATA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      .hero-section {
+        min-height: 600px;
+        position: relative;
+        overflow: hidden;
+      }
+      .carousel-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .carousel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: opacity 0.7s ease-in-out;
+        opacity: 0;
+      }
+      .carousel-slide.active {
+        opacity: 1;
+      }
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+      .carousel-nav {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+      }
+      .carousel-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      .carousel-dot.active {
+        background: white;
+      }
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.3);
+        border: 2px solid white;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: background 0.3s ease;
+      }
+      .carousel-btn:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .carousel-btn-prev {
+        left: 20px;
+      }
+      .carousel-btn-next {
+        right: 20px;
+      }
+      .scroll-smooth {
+        scroll-behavior: smooth;
+      }
+      .card-hover {
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      .testimonial-carousel {
+        position: relative;
+      }
+    </style>
+  </head>
+  <body class="bg-white scroll-smooth">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <img
+            src="image/Logo Yayasan.jpeg"
+            alt="Logo Yayasan Darusalam"
+            class="w-12 h-12 rounded-full object-cover border-2 border-blue-600 shadow-md"
+          />
+          <div>
+            <h1 class="text-xl font-bold text-gray-800">Yayasan Darusalam</h1>
+            <p class="text-xs text-gray-600">Berakhlak dan Berprestasi</p>
+          </div>
+        </div>
+        <ul class="hidden md:flex space-x-6 text-gray-700 font-semibold">
+          <li><a href="#tentang" class="hover:text-blue-600 transition">Tentang</a></li>
+          <li><a href="#akademik" class="hover:text-blue-600 transition">Program</a></li>
+          <li><a href="#fasilitas" class="hover:text-blue-600 transition">Fasilitas</a></li>
+          <li><a href="#kontak" class="hover:text-blue-600 transition">Kontak</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section with Carousel -->
+    <section class="hero-section flex items-center justify-center relative">
+      <!-- Carousel Slides -->
+      <div class="carousel-wrapper">
+        <div
+          class="carousel-slide active"
+          style="background-image: url(&quot;./images/carousel-1.jpeg&quot;)"
+        ></div>
+        <div
+          class="carousel-slide"
+          style="background-image: url(&quot;./images/carousel juga.jpeg&quot;)"
+        ></div>
+        <div
+          class="carousel-slide"
+          style="background-image: url(&quot;./images/carousel yang lain.jpeg&quot;)"
+        ></div>
+        <div
+          class="carousel-slide"
+          style="background-image: url(&quot;./images/carousel terakhir.jpeg&quot;)"
+        ></div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <button class="carousel-btn carousel-btn-prev" onclick="changeSlide(-1)">❮</button>
+      <button class="carousel-btn carousel-btn-next" onclick="changeSlide(1)">❯</button>
+
+      <!-- Dot Indicators -->
+      <div class="carousel-nav">
+        <span class="carousel-dot active" onclick="currentSlide(0)"></span>
+        <span class="carousel-dot" onclick="currentSlide(1)"></span>
+        <span class="carousel-dot" onclick="currentSlide(2)"></span>
+        <span class="carousel-dot" onclick="currentSlide(3)"></span>
+      </div>
+
+      <!-- Text Overlay -->
+      <div class="text-center text-white z-10 px-6">
+        <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">Yayasan Darusalam</h1>
+        <p class="text-2xl md:text-3xl mb-8 drop-shadow-lg italic">
+          Unggul dalam Prestasi, Berkarakter dalam Budaya
+        </p>
+        <p class="text-lg mb-8 drop-shadow-lg max-w-2xl mx-auto">
+          Menaungi MAS AL MUSTOFAWIYAH dan PKBM NURUL FATA
+        </p>
+        <a
+          href="#tentang"
+          class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition"
+          >Pelajari Lebih Lanjut</a
+        >
+      </div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-6 py-12">
+      <!-- 1. TENTANG SEKOLAH -->
+      <section
+        id="tentang"
+        class="bg-white rounded-lg shadow-lg p-8 mb-12 border-l-4 border-blue-600 card-hover"
+      >
+        <h2 class="text-3xl font-bold text-blue-600 mb-6">📚 Tentang Kami</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg">
+            <h3 class="text-xl font-bold text-blue-700 mb-3">Sejarah Singkat</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Yayasan Darusalam didirikan dengan visi menjadi lembaga pendidikan terdepan yang
+              mengintegrasikan keunggulan akademik dengan pembentukan karakter Islami. Sejak awal
+              berdirinya, Yayasan Darusalam telah berkomitmen untuk memberikan pendidikan
+              berkualitas tinggi kepada generasi muda Indonesia.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg">
+            <h3 class="text-xl font-bold text-blue-700 mb-4">🏫 Dua Lembaga Pendidikan</h3>
+            <div class="space-y-4">
+              <div class="bg-white p-4 rounded-lg border-l-4 border-blue-600 shadow-sm">
+                <p class="font-bold text-blue-700 mb-1">🎓 MAS AL MUSTOFAWIYAH</p>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                  Madrasah Aliyah Swasta untuk tingkat SMA/MA dengan fokus pada keunggulan akademik
+                  dan pembentukan karakter Islami bagi siswa yang ingin melanjutkan ke jenjang
+                  pendidikan tinggi.
+                </p>
+              </div>
+              <div class="bg-white p-4 rounded-lg border-l-4 border-purple-600 shadow-sm">
+                <p class="font-bold text-purple-700 mb-1">📚 PKBM NURUL FATA</p>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                  Pusat Kegiatan Belajar Masyarakat yang menyediakan program pendidikan fleksibel
+                  untuk masyarakat umum, mencakup program kesetaraan dan keterampilan praktis sesuai
+                  kebutuhan komunitas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="bg-cyan-50 border-l-4 border-cyan-500 p-6 rounded">
+            <h4 class="text-lg font-bold text-cyan-700 mb-3">💪 Nilai Inti</h4>
+            <ul class="text-gray-700 text-sm space-y-1">
+              <li>✓ Integritas dan Kejujuran</li>
+              <li>✓ Keunggulan Akademik</li>
+              <li>✓ Disiplin dan Tanggung Jawab</li>
+              <li>✓ Kepemimpinan dan Kerjasama</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISI & MISI MAS AL MUSTOFAWIYAH -->
+      <section
+        class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-lg p-8 mb-12 border-t-4 border-blue-600 card-hover"
+      >
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-blue-600 mb-2">🎓 MAS AL MUSTOFAWIYAH</h2>
+          <p class="text-gray-600 text-sm">Madrasah Aliyah Swasta</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Visi MA -->
+          <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-600">
+            <h3 class="text-2xl font-bold text-blue-700 mb-4">🎯 Visi</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Unggul dalam Akademik Dan Non-Akademik yang Berlandasakan Wahyu untuk Terbentuknya Jiwa Khalifah Abad 21.
+            </p>
+          </div>
+
+          <!-- Misi MA -->
+          <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-indigo-600">
+            <h3 class="text-2xl font-bold text-indigo-700 mb-4">📋 Misi</h3>
+            <ul class="text-gray-700 space-y-2 text-sm">
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 font-bold">✓</span>
+                <span
+                  >Mewujudkan religius culture dengan  mengamalkan dan menghayati  nilai-nilai ajaran agama Islam Ahlussunah wal jamaah secara nyata</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 font-bold">✓</span>
+                <span
+                  >Mewujudkan nilai-nilai ahlakul karimah di lingkungan madrasah</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 font-bold">✓</span>
+                <span>Membudayakan sikap disiplin semua warga madrasah</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 font-bold">✓</span>
+                <span
+                  >Membudayakan Senyum, Salam, Sapa, Sopan, Santun dan shadaqah (6S) di lingkungan madrasah </span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 font-bold">✓</span>
+                <span>Membudayakan lingkungan Madrasah yang bersih, sehat, indah dan Islami</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 font-bold">✓</span>
+                <span>Menciptakan kondisi lingkungan pembelajaran yang Aktif, Inovatif, Kreatif, Efektif, dan menyenangkan dengan pendekatan scientific serta nyaman dan kondusif</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 font-bold">✓</span>
+                <span>Menciptakan kondisi lingkungan pembelajaran yang bernuansa literasi dan numerasi</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 font-bold">✓</span>
+                <span>Membimbing dan mengembangkan minat serta bakat peserta didik melalui kegiatan pengembangan diri baik intrakurikuler maupun ekstrakurikuler secara efektif</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 font-bold">✓</span>
+                <span>Mengoptimalkan potensi akademik dan non akademik melalui proses pembelajaran dan bimbingan</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 font-bold">✓</span>
+                <span>Meningkatkan profesioanalisme dan kompetensi tenaga pendidik dan kependidikan sesuai dengan perkembangan dunia pendidikan</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 font-bold">✓</span>
+                <span>Meningkatkan pelayanan yang optimal bagi seluruh warga madrasah</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 font-bold">✓</span>
+                <span>Membangun dan meningkatkan kerjasama antara warga madrasah dengan lingkungan dengan berbagai kegiatan positif</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <!-- VISI & MISI PKBM NURUL FATA -->
+      <section
+        class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg shadow-lg p-8 mb-12 border-t-4 border-purple-600 card-hover"
+      >
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-purple-600 mb-2">📚 PKBM NURUL FATA</h2>
+          <p class="text-gray-600 text-sm">Pusat Kegiatan Belajar Masyarakat</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Visi PKBM -->
+          <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-600">
+            <h3 class="text-2xl font-bold text-purple-700 mb-4">🎯 Visi</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Unggul dalam Pendidikan Masyarakat untuk Menghadapi Perubahan Zaman dan Memfasilitasi Peserta Didik Jiwa Kepemimpinan Abad 21.
+            </p>
+          </div>
+
+          <!-- Misi PKBM -->
+          <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-pink-600">
+            <h3 class="text-2xl font-bold text-pink-700 mb-4">📋 Misi</h3>
+            <ul class="text-gray-700 space-y-2 text-sm">
+              <li class="flex items-start">
+                <span class="text-purple-600 mr-3 font-bold">✓</span>
+                <span>Mewujudkan peserta didik yang berlandaskan pengetahuan, agama dan teknologi</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-600 mr-3 font-bold">✓</span>
+                <span
+                  >Menyadarkan masyarakat akan pentingnya kerja intelektual dibanding kerja fisik</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-600 mr-3 font-bold">✓</span>
+                <span
+                  >Mewujudkan peserta didik memiliki ijazah jenjang pendidikan SD, SLTP dan SLTA</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-600 mr-3 font-bold">✓</span>
+                <span
+                  >Meningkatkan kemampuan masyarakat untuk berkarya positif</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-600 mr-3 font-bold">✓</span>
+                <span
+                  >Meningkatkan kesejahteraan hidup masyarakat</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-600 mr-3 font-bold">✓</span>
+                <span
+                  >Mengembangkan usaha-usaha produktif masyarakat</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-600 mr-3 font-bold">✓</span>
+                <span
+                  >Meningkatkan Indeks Pembangunan Manusia (IPM) bidang pendidikan</span
+                >
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </section>
+
+           <section
+        class="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg shadow-lg p-8 mb-12 card-hover"
+      >
+        <h2 class="text-3xl font-bold mb-8">🎤 Sambutan Pimpinan</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Kepala PKBM -->
+          <div class="bg-white bg-opacity-10 backdrop-blur rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <img
+                src="image/Foto Pak Deni.jpeg"
+                alt="Kepala PKBM NURUL FATA"
+                class="w-20 h-20 rounded-full object-cover mr-4 border-4 border-white"
+              />
+              <div>
+                <h3 class="text-xl font-bold">Bapak Deni Abdul Kholik, S.Pd.I., M.A.P.</h3>
+                <p class="text-sm opacity-90">Kepala PKBM NURUL FATA</p>
+              </div>
+            </div>
+            <p class="text-sm leading-relaxed opacity-95">
+              "Assalamu'alaikum Warahmatullahi Wabarakatuh. Kami bersyukur atas kepercayaan yang
+              diberikan kepada PKBM NURUL FATA. Setiap peserta didik adalah amanah yang harus kita
+              kembangkan potensinya secara maksimal. Mari bersama-sama membangun generasi yang
+              unggul dalam prestasi dan berkarakter kuat dalam budaya Islami."
+            </p>
+          </div>
+
+          <!-- Kepala Sekolah MA -->
+          <div class="bg-white bg-opacity-10 backdrop-blur rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <img
+                src="image/Foto Bu Aliyah.jpeg"
+                alt="Kepala Madrasah Aliyah"
+                class="w-20 h-20 rounded-full object-cover mr-4 border-4 border-white"
+              />
+              <div>
+                <h3 class="text-xl font-bold">Ibu Dr. Adah Aliyah, M.Pd.</h3>
+                <p class="text-sm opacity-90">Kepala Madrasah Aliyah Swasta Al-Mustofawiyah</p>
+              </div>
+            </div>
+            <p class="text-sm leading-relaxed opacity-95">
+              "Dengan bangga kami persembahkan Madrasah Aliyah yang berkomitmen untuk memberikan
+              pendidikan berkualitas internasional dengan tetap mempertahankan nilai-nilai
+              ketauhidan. Semoga melalui proses pembelajaran yang berkelanjutan, peserta didik dapat
+              mencapai cita-cita mereka sambil menjadi individu yang bermanfaat bagi masyarakat."
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">📰 Program Unggulan</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Berita 1 -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+            <img
+              src="image/Literasi.jpeg"
+              alt="Kegiatan Literasi Bersama"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <p class="text-sm text-blue-600 font-semibold mb-2">Program Unggulan</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Literasi Bersama</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Siswa-siswi kami melalukan kegiatan Literasi Bersama untuk meningkatkan kemampuan
+                membaca dan menulis mereka.
+              </p>
+            </div>
+          </div>
+
+          <!-- Berita 2 -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+            <img
+              src="image/Baksos.jpg"
+              alt="Kegiatan Bakti Sosial"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <p class="text-sm text-blue-600 font-semibold mb-2">Program Unggulan</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Bakti Sosial</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Acara yang mengajarkan murid kami untuk bersosialisasi dan berempati kepada sesama
+                guna mengembangkan nilai-nilai kemanusiaan.
+              </p>
+            </div>
+          </div>
+
+          <!-- Berita 3 -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+            <img
+              src="image/Anti-Bullying.jpg"
+              alt="Gerakan Anti Bullying"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <p class="text-sm text-sky-600 font-semibold mb-2">Program Unggulan</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Gerakan Anti Bullying</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Kami dengan bangga menyatakan bahwa sekolah kami berkomitmen untuk menciptakan
+                lingkungan yang aman dan inklusif bagi semua siswa dengan adanya program
+                anti-bullying.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Berita 1 -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+            <img
+              src="image/Aquaponik.jpg"
+              alt="Kegiatan Aquaponik"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <p class="text-sm text-blue-600 font-semibold mb-2">Program Unggulan</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Aquaponik</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Siswa-siswi kami melalukan kegiatan pengelolaan sistem aquaponik untuk memahami
+                prinsip pertanian berkelanjutan yang berbasis ekosistem.
+              </p>
+            </div>
+          </div>
+
+          <!-- Berita 2 -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+            <img
+              src="image/Komputer.jpg"
+              alt="Pelatihan Sistem Komputer"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <p class="text-sm text-blue-600 font-semibold mb-2">Program Unggulan</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">
+                Pelatihan pengembangan keahlian menjalankan sistem Komputer
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Pelatihan yang bertujuan mengembangkan kemampuan siswa dalam menjalankan dan merawat
+                sistem komputer guna mempersiapkan siswa untuk berkarier di bidang teknologi dan
+                informasi.
+              </p>
+            </div>
+          </div>
+
+          <!-- Berita 3 -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+            <img
+              src="image/Briefing-Guru.jpg"
+              alt="Briefing Tenaga Pendidik"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <p class="text-sm text-sky-600 font-semibold mb-2">Program Unggulan</p>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">
+                Briefing dan Monitoring Tenaga Pendidik
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Kegiatan yang berpusat pada pengembangan Kompetensi Guru yang ditujukan untuk
+                meningkatkan kualitas dan efektivitas guna membuat lingkungan pendidikan yang
+                optimal.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. PROGRAM AKADEMIK -->
+      <section
+        id="akademik"
+        class="bg-gradient-to-r from-blue-50 to-sky-50 rounded-lg shadow-lg p-8 mb-12 border-t-4 border-blue-600 card-hover"
+      >
+        <h2 class="text-3xl font-bold text-blue-600 mb-8">📖 Program Akademik</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Kurikulum -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-2xl font-bold text-blue-700 mb-4">📚 Kurikulum</h3>
+            <ul class="text-gray-700 space-y-3 text-sm">
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2 font-bold">✓</span>
+                <span
+                  ><strong>Kurikulum Merdeka</strong> - Pembelajaran berpusat pada siswa dengan
+                  pendekatan holistik</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2 font-bold">✓</span>
+                <span
+                  ><strong>Program IPA & IPS</strong> - Pilihan peminatan sesuai minat siswa</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2 font-bold">✓</span>
+                <span
+                  ><strong>Pembelajaran Berbasis Proyek</strong> - Mengembangkan kemampuan
+                  praktis</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2 font-bold">✓</span>
+                <span
+                  ><strong>Literasi Digital</strong> - Integrasi teknologi dalam pembelajaran</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Kegiatan Akademik -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-2xl font-bold text-blue-700 mb-4">🎯 Kegiatan Akademik</h3>
+            <ul class="text-gray-700 space-y-3 text-sm">
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2 font-bold">✓</span>
+                <span
+                  ><strong>Seminar & Workshop</strong> - Pembicara tamu dari berbagai bidang</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2 font-bold">✓</span>
+                <span><strong>Fieldtrip Edukatif</strong> - Pembelajaran langsung di lapangan</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2 font-bold">✓</span>
+                <span
+                  ><strong>Kompetisi Internal</strong> - Olimpiade sains, matematika, dan
+                  bahasa</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2 font-bold">✓</span>
+                <span
+                  ><strong>Program Mentoring</strong> - Bimbingan akademik intensif per siswa</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Prestasi Akademik -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-2xl font-bold text-sky-700 mb-4">🌟 Target Pembelajaran</h3>
+            <ul class="text-gray-700 space-y-3 text-sm">
+              <li class="flex items-start">
+                <span class="text-sky-600 mr-2 font-bold">✓</span>
+                <span
+                  ><strong>Nilai UN Unggul</strong> - Target rata-rata di atas standar
+                  nasional</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-sky-600 mr-2 font-bold">✓</span>
+                <span
+                  ><strong>Diterima PTN</strong> - 80% lulusan diterima di universitas ternama</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-sky-600 mr-2 font-bold">✓</span>
+                <span
+                  ><strong>Bersertifikat Internasional</strong> - Sertifikat bahasa dan
+                  kompetensi</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-sky-600 mr-2 font-bold">✓</span>
+                <span
+                  ><strong>Berkarakter Islami</strong> - Internalisasi nilai-nilai moral dan
+                  agama</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. FASILITAS -->
+      <section id="fasilitas" class="mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">🏢 Fasilitas Lengkap</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Laboratorium -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+            <div
+              class="h-40 bg-gradient-to-r from-blue-400 to-cyan-400 flex items-center justify-center text-white text-5xl"
+            >
+              🔬
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Laboratorium Sains</h3>
+              <p class="text-gray-600 mb-4">
+                Laboratorium berstandar internasional dilengkapi peralatan modern untuk praktikum
+                Kimia, Fisika, dan Biologi dengan standar keselamatan tertinggi.
+              </p>
+              <ul class="text-sm text-gray-700 space-y-1">
+                <li>✓ Lab Kimia dengan fume hood</li>
+                <li>✓ Lab Fisika dengan peralatan digital</li>
+                <li>✓ Lab Biologi dengan mikroskop elektronik</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Perpustakaan -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+            <div
+              class="h-40 bg-gradient-to-r from-blue-300 to-cyan-400 flex items-center justify-center text-white text-5xl"
+            >
+              📚
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Perpustakaan Digital</h3>
+              <p class="text-gray-600 mb-4">
+                Perpustakaan modern dengan koleksi 10,000+ judul buku, akses e-book, dan digital
+                repository yang mendukung penelitian siswa.
+              </p>
+              <ul class="text-sm text-gray-700 space-y-1">
+                <li>✓ Ruang baca nyaman dengan WiFi</li>
+                <li>✓ Koleksi referensi lengkap</li>
+                <li>✓ Area diskusi kelompok</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Masjid -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+            <div
+              class="h-40 bg-gradient-to-r from-sky-300 to-blue-400 flex items-center justify-center text-white text-5xl"
+            >
+              🕌
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Masjid & Ruang Ibadah</h3>
+              <p class="text-gray-600 mb-4">
+                Masjid berstandar islami yang indah dengan fasilitas lengkap untuk melaksanakan
+                ibadah shalat dan kegiatan keagamaan lainnya.
+              </p>
+              <ul class="text-sm text-gray-700 space-y-1">
+                <li>✓ Masjid berkapasitas 500+ orang</li>
+                <li>✓ Ruang wudhu terpisah</li>
+                <li>✓ Ruang tahsin Al-Qur'an</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Ruang Multimedia -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+            <div
+              class="h-40 bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center text-white text-5xl"
+            >
+              🎬
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Ruang Multimedia & Studio</h3>
+              <p class="text-gray-600 mb-4">
+                Studio produksi berteknologi tinggi untuk kegiatan seni, musik, video, dan
+                broadcasting yang mendukung kreativitas siswa.
+              </p>
+              <ul class="text-sm text-gray-700 space-y-1">
+                <li>✓ Studio musik profesional</li>
+                <li>✓ Studio produksi video</li>
+                <li>✓ Ruang editing dan editing suite</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Fasilitas Olahraga -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+            <div
+              class="h-40 bg-gradient-to-r from-indigo-400 to-blue-400 flex items-center justify-center text-white text-5xl"
+            >
+              ⚽
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Fasilitas Olahraga</h3>
+              <p class="text-gray-600 mb-4">
+                Sarana olahraga lengkap untuk mengembangkan potensi atletik dan kesehatan fisik
+                siswa dalam lingkungan yang aman.
+              </p>
+              <ul class="text-sm text-gray-700 space-y-1">
+                <li>✓ Lapangan sepak bola & futsal</li>
+                <li>✓ Gymnasium berstandar nasional</li>
+                <li>✓ Kolam renang 50m</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Ruang Kantin & Asrama -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+            <div
+              class="h-40 bg-gradient-to-r from-cyan-400 to-blue-400 flex items-center justify-center text-white text-5xl"
+            >
+              🏠
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Akomodasi & Kantin</h3>
+              <p class="text-gray-600 mb-4">
+                Asrama nyaman untuk siswa dengan fasilitas lengkap dan kantin yang menyediakan
+                makanan bergizi setiap hari.
+              </p>
+              <ul class="text-sm text-gray-700 space-y-1">
+                <li>✓ Asrama berstandar hotel</li>
+                <li>✓ Kantin sehat & bergizi</li>
+                <li>✓ Ruang istirahat guru</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. EKSTRAKURIKULER -->
+      <section
+        class="bg-gradient-to-r from-blue-50 to-sky-50 rounded-lg shadow-lg p-8 mb-12 border-l-4 border-blue-600 card-hover"
+      >
+        <h2 class="text-3xl font-bold text-blue-600 mb-8">🎪 Kegiatan Ekstrakurikuler</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Pramuka -->
+          <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+            <div class="text-5xl mb-4">🪂</div>
+            <h3 class="text-2xl font-bold text-blue-700 mb-4">Pramuka</h3>
+            <p class="text-gray-700 mb-4">
+              Program kepramukaan yang mengembangkan karakter, kepemimpinan, dan keterampilan
+              survival siswa dengan metode pembelajaran yang menyenangkan dan interaktif.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-2">
+              <li>✓ Latihan rutin setiap hari Sabtu</li>
+              <li>✓ Camping dan hiking berkala</li>
+              <li>✓ Sertifikat kepramukaan nasional</li>
+              <li>✓ Pelatih profesional terlatih</li>
+            </ul>
+          </div>
+
+          <!-- Hadroh -->
+          <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+            <div class="text-5xl mb-4">🎵</div>
+            <h3 class="text-2xl font-bold text-blue-700 mb-4">Hadroh & Musik Islami</h3>
+            <p class="text-gray-700 mb-4">
+              Kelompok seni musik islami yang memperdalam apresiasi seni budaya dan agama sambil
+              mengasah bakat musik dan vokal siswa.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-2">
+              <li>✓ Latihan intensif 2x per minggu</li>
+              <li>✓ Tampil di berbagai acara</li>
+              <li>✓ Kurikulum musik internasional</li>
+              <li>✓ Mentor dari musisi profesional</li>
+            </ul>
+          </div>
+
+          <!-- Silat -->
+          <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+            <div class="text-5xl mb-4">🥋</div>
+            <h3 class="text-2xl font-bold text-sky-700 mb-4">Silat & Bela Diri</h3>
+            <p class="text-gray-700 mb-4">
+              Pelatihan seni beladiri tradisional yang mengembangkan disiplin, fokus, dan
+              kepercayaan diri sambil menjaga kesehatan fisik optimal.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-2">
+              <li>✓ Kelas untuk semua tingkat</li>
+              <li>✓ Pelatih bersertifikat internasional</li>
+              <li>✓ Kompetisi regional & nasional</li>
+              <li>✓ Filosofi dan teknik tradisional</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-8 bg-white p-6 rounded-lg">
+          <h4 class="text-lg font-bold text-blue-600 mb-4">🎯 Kegiatan Ekstrakurikuler Lainnya</h4>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+            <div class="flex items-center space-x-2">
+              <span class="text-blue-600">✓</span><span>Debat & Speech</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-blue-600">✓</span><span>Science Club</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-blue-600">✓</span><span>Seni Rupa</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-blue-600">✓</span><span>Fotografi</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-blue-600">✓</span><span>Jurnalistik</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-blue-600">✓</span><span>Robotika</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-blue-600">✓</span><span>Coding & IT</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-blue-600">✓</span><span>Entrepreneurship</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. PRESTASI SEKOLAH -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">🏆 Prestasi Sekolah</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <!-- Akademik -->
+          <div class="bg-sky-50 border-l-4 border-sky-500 rounded-lg p-6 shadow-lg card-hover">
+            <h3 class="text-2xl font-bold text-sky-700 mb-4">📚 Prestasi Akademik</h3>
+            <ul class="text-gray-700 space-y-2 text-sm">
+              <li class="flex items-start">
+                <span class="text-sky-600 mr-2 font-bold">🥇</span> Juara 1 Olimpiade Matematika
+                Nasional 2024
+              </li>
+              <li class="flex items-start">
+                <span class="text-sky-600 mr-2 font-bold">🥇</span> Juara 1 Kompetisi Sains
+                Indonesia 2023
+              </li>
+              <li class="flex items-start">
+                <span class="text-sky-600 mr-2 font-bold">🥈</span> Juara 2 Lomba Debat Bahasa
+                Inggris 2024
+              </li>
+              <li class="flex items-start">
+                <span class="text-sky-600 mr-2 font-bold">🥉</span> Juara 3 Kompetisi Robot Nasional
+                2023
+              </li>
+              <li class="flex items-start">
+                <span class="text-sky-600 mr-2 font-bold">✓</span> 15 medali emas Kompetisi Sains
+                2024
+              </li>
+            </ul>
+          </div>
+
+          <!-- Olahraga -->
+          <div class="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-6 shadow-lg card-hover">
+            <h3 class="text-2xl font-bold text-blue-700 mb-4">⚽ Prestasi Olahraga</h3>
+            <ul class="text-gray-700 space-y-2 text-sm">
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2 font-bold">🥇</span> Juara Umum Sepak Bola Putra
+                2024
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2 font-bold">🥇</span> Juara 1 Badminton Putri 2024
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2 font-bold">🥈</span> Juara 2 Silat Putra 2023
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2 font-bold">🥈</span> Juara 2 Renang Gaya Bebas 2024
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-2 font-bold">✓</span> Atlet PON 2024 (3 peserta)
+              </li>
+            </ul>
+          </div>
+
+          <!-- Seni -->
+          <div class="bg-cyan-50 border-l-4 border-cyan-500 rounded-lg p-6 shadow-lg card-hover">
+            <h3 class="text-2xl font-bold text-cyan-700 mb-4">🎭 Prestasi Seni & Budaya</h3>
+            <ul class="text-gray-700 space-y-2 text-sm">
+              <li class="flex items-start">
+                <span class="text-cyan-600 mr-2 font-bold">🥇</span> Juara 1 Hadroh Nasional 2024
+              </li>
+              <li class="flex items-start">
+                <span class="text-cyan-600 mr-2 font-bold">🥇</span> Juara 1 Lomba Seni Rupa 2023
+              </li>
+              <li class="flex items-start">
+                <span class="text-cyan-600 mr-2 font-bold">🥈</span> Juara 2 Sinematografi 2024
+              </li>
+              <li class="flex items-start">
+                <span class="text-cyan-600 mr-2 font-bold">🥉</span> Juara 3 Teater Nasional 2023
+              </li>
+              <li class="flex items-start">
+                <span class="text-cyan-600 mr-2 font-bold">✓</span> 8 penghargaan di festival
+                kesenian
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Statistik Prestasi -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg p-8 shadow-lg">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+              <p class="text-4xl font-bold mb-2">250+</p>
+              <p class="opacity-90">Penghargaan Total</p>
+            </div>
+            <div>
+              <p class="text-4xl font-bold mb-2">85%</p>
+              <p class="opacity-90">Lulusan PTN</p>
+            </div>
+            <div>
+              <p class="text-4xl font-bold mb-2">42</p>
+              <p class="opacity-90">Medali Emas 2024</p>
+            </div>
+            <div>
+              <p class="text-4xl font-bold mb-2">95%</p>
+              <p class="opacity-90">Kepuasan Alumni</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. TESTIMONI -->
+      <section
+        class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg shadow-lg p-8 mb-12 card-hover"
+      >
+        <h2 class="text-3xl font-bold text-indigo-600 mb-8">💬 Testimoni Siswa & Alumni</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Testimoni 1 -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold mr-4"
+              >
+                A
+              </div>
+              <div>
+                <p class="font-bold text-gray-800">Aisha Nur Azizah</p>
+                <p class="text-sm text-gray-600">MAS AL MUSTOFAWIYAH 2023</p>
+              </div>
+            </div>
+            <p class="text-gray-700 italic mb-4">
+              "Pendidikan di MAS AL MUSTOFAWIYAH telah mengubah hidup saya. Guru-guru yang peduli,
+              fasilitas lengkap, dan lingkungan yang mendukung membantu saya meraih mimpi masuk ITB.
+              Terima kasih Yayasan Darusalam!"
+            </p>
+            <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          </div>
+
+          <!-- Testimoni 2 -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4"
+              >
+                B
+              </div>
+              <div>
+                <p class="font-bold text-gray-800">Budi Suharno</p>
+                <p class="text-sm text-gray-600">MAS AL MUSTOFAWIYAH 2022</p>
+              </div>
+            </div>
+            <p class="text-gray-700 italic mb-4">
+              "Selain akademik, sekolah ini mengajarkan nilai-nilai karakter yang kuat. Kegiatan
+              ekstrakurikuler seperti Pramuka dan Silat membentuk saya menjadi pribadi yang disiplin
+              dan percaya diri. Sekarang saya kuliah di UI dan tetap aktif."
+            </p>
+            <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          </div>
+
+          <!-- Testimoni 3 -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-sky-600 rounded-full flex items-center justify-center text-white font-bold mr-4"
+              >
+                C
+              </div>
+              <div>
+                <p class="font-bold text-gray-800">Citra Dewi Putri</p>
+                <p class="text-sm text-gray-600">PKBM NURUL FATA 2023</p>
+              </div>
+            </div>
+            <p class="text-gray-700 italic mb-4">
+              "PKBM NURUL FATA memberikan saya kesempatan kedua untuk melanjutkan pendidikan.
+              Program yang fleksibel dan dukungan mentor yang luar biasa membuat saya bisa bekerja
+              dan belajar bersamaan."
+            </p>
+            <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          </div>
+
+          <!-- Testimoni 4 -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-cyan-600 rounded-full flex items-center justify-center text-white font-bold mr-4"
+              >
+                D
+              </div>
+              <div>
+                <p class="font-bold text-gray-800">Dr. Dedi Gunawan</p>
+                <p class="text-sm text-gray-600">Alumni 2015 (Sekarang Dosen)</p>
+              </div>
+            </div>
+            <p class="text-gray-700 italic mb-4">
+              "Saya bangga pernah menjadi bagian dari Yayasan Darusalam. Fondasi akademik dan
+              karakter yang diberikan telah membawa saya hingga meraih gelar doktor. Sekarang saya
+              berkontribusi kembali sebagai dosen."
+            </p>
+            <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          </div>
+
+          <!-- Testimoni 5 -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4"
+              >
+                E
+              </div>
+              <div>
+                <p class="font-bold text-gray-800">Eka Suryanto</p>
+                <p class="text-sm text-gray-600">Orang Tua Siswa Kelas X</p>
+              </div>
+            </div>
+            <p class="text-gray-700 italic mb-4">
+              "Anak saya merasa nyaman dan termotivasi belajar di sini. Transparansi dalam
+              komunikasi sekolah-orang tua, dan perhatian individual kepada setiap siswa sangat luar
+              biasa."
+            </p>
+            <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          </div>
+
+          <!-- Testimoni 6 -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold mr-4"
+              >
+                F
+              </div>
+              <div>
+                <p class="font-bold text-gray-800">Fitri Handayani</p>
+                <p class="text-sm text-gray-600">Alumni 2019 (Entrepreneur)</p>
+              </div>
+            </div>
+            <p class="text-gray-700 italic mb-4">
+              "Program Entrepreneurship di sekolah ini menginspirasi saya mendirikan startup
+              sendiri. Guru-guru yang visioner dan dukungan dari sekolah sangat membantu perjalanan
+              bisnis saya."
+            </p>
+            <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. HUBUNGI KAMI -->
+      <section
+        id="kontak"
+        class="bg-gradient-to-r from-blue-800 to-blue-900 text-white rounded-lg shadow-lg p-8 mb-12 card-hover"
+      >
+        <h2 class="text-3xl font-bold mb-8">📞 Hubungi Kami</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <!-- Informasi Kontak -->
+          <div>
+            <h3 class="text-2xl font-bold mb-6">Informasi Kontak</h3>
+
+            <div class="space-y-4 mb-6">
+              <div class="flex items-start">
+                <span class="text-2xl mr-4">📍</span>
+                <div>
+                  <p class="font-bold mb-1">Alamat Sekolah</p>
+                  <p class="text-gray-300">
+                    Jl. Didi Prawira Kusumah KP. Babakan<br />Kecamatan Karangtengah<br />Kabupaten
+                    Cianjur, Jawa Barat 43281<br />Indonesia
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <span class="text-2xl mr-4">📞</span>
+                <div>
+                  <p class="font-bold mb-1">Telepon</p>
+                  <p class="text-gray-300">
+                    Sekolah: (0261) 123-4567<br />
+                    Whatsapp: 0812-3456-7890<br />
+                    FAX: (0261) 123-4568
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <span class="text-2xl mr-4">📧</span>
+                <div>
+                  <p class="font-bold mb-1">Email</p>
+                  <p class="text-gray-300">
+                    Umum:
+                    <a href="mailto:info@darusalam.sch.id" class="text-blue-400 hover:text-blue-300"
+                      >info@darusalam.sch.id</a
+                    ><br />
+                    Penerimaan:
+                    <a
+                      href="mailto:pendaftaran@darusalam.sch.id"
+                      class="text-blue-400 hover:text-blue-300"
+                      >pendaftaran@darusalam.sch.id</a
+                    ><br />
+                    Kepala Sekolah:
+                    <a
+                      href="mailto:kepala@darusalam.sch.id"
+                      class="text-blue-400 hover:text-blue-300"
+                      >kepala@darusalam.sch.id</a
+                    >
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <span class="text-2xl mr-4">🌐</span>
+                <div>
+                  <p class="font-bold mb-1">Media Sosial</p>
+                  <p class="text-gray-300">
+                    Instagram: @daruslamilmuthalibah<br />
+                    Facebook: Yayasan Darusalam<br />
+                    YouTube: Darusalam School Channel
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-blue-900 bg-opacity-50 p-4 rounded-lg">
+              <p class="text-sm">
+                <strong>⏰ Jam Kerja:</strong><br />Senin - Jumat: 07:00 - 16:00<br />Sabtu: 07:00 -
+                12:00<br />Minggu 08.00 - 12:00<br />
+                Hari Libur: Tutup
+              </p>
+            </div>
+          </div>
+
+          <!-- Formulir Kontak -->
+          <div>
+            <h3 class="text-2xl font-bold mb-6">Kirim Pesan Kami</h3>
+
+            <form class="space-y-4" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <div>
+                <label class="block text-sm font-semibold mb-2">Nama Lengkap</label>
+                <input
+                  type="text"
+                  name="nama"
+                  placeholder="Masukkan nama Anda"
+                  class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder=".com"
+                  class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Telepon</label>
+                <input
+                  type="tel"
+                  name="telepon"
+                  placeholder="0812-3456-7890"
+                  class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Subjek</label>
+                <select
+                  name="subjek"
+                  class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                >
+                  <option value="">Pilih Subjek</option>
+                  <option value="Pertanyaan Penerimaan">Pertanyaan Penerimaan</option>
+                  <option value="Informasi Program">Informasi Program</option>
+                  <option value="Saran & Keluhan">Saran & Keluhan</option>
+                  <option value="Lainnya">Lainnya</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Pesan</label>
+                <textarea
+                  name="pesan"
+                  placeholder="Tulis pesan Anda di sini..."
+                  rows="4"
+                  class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition"
+              >
+                Kirim Pesan
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Peta -->
+        <div class="mt-8">
+          <h3 class="text-2xl font-bold mb-4">📍 Lokasi Kami</h3>
+          <div class="bg-gray-700 rounded-lg h-96 flex items-center justify-center">
+            <p class="text-gray-300">
+              <br /><small
+                ><iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.551231935801!2d107.17003947317727!3d-6.824303766748568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6853159ef8d129%3A0xadd14b13741a558e!2sMA%20Al%20Mustofawiyah%20Karangtengah!5e0!3m2!1sen!2sid!4v1776925472424!5m2!1sen!2sid"
+                  width="1100"
+                  height="360"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe
+              ></small>
+            </p>
+            <!-- Untuk menambahkan peta nyata, ganti div di atas dengan iframe Google Maps -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 text-center py-8">
+      <p class="mb-2">&copy; 2026 Yayasan Darusalam | MAS AL MUSTOFAWIYAH & PKBM NURUL FATA</p>
+      <p class="text-sm">Unggul dalam Prestasi, Berkarakter dalam Budaya</p>
+      <div class="mt-4 flex justify-center space-x-4 text-2xl">
+        <a href="#" class="hover:text-cyan-400 transition">📘</a>
+        <a href="#" class="hover:text-sky-400 transition">📷</a>
+        <a href="#" class="hover:text-blue-300 transition">📹</a>
+        <a href="#" class="hover:text-cyan-300 transition">💬</a>
+      </div>
+    </footer>
+
+    <!-- Carousel JavaScript -->
+    <script>
+      let currentIndex = 0;
+      const slides = document.querySelectorAll(".carousel-slide");
+      const dots = document.querySelectorAll(".carousel-dot");
+      const totalSlides = slides.length;
+
+      function showSlide(n) {
+        if (n >= totalSlides) {
+          currentIndex = 0;
+        } else if (n < 0) {
+          currentIndex = totalSlides - 1;
+        }
+
+        slides.forEach((slide) => {
+          slide.classList.remove("active");
+        });
+        dots.forEach((dot) => {
+          dot.classList.remove("active");
+        });
+
+        slides[currentIndex].classList.add("active");
+        dots[currentIndex].classList.add("active");
+      }
+
+      function changeSlide(n) {
+        currentIndex += n;
+        showSlide(currentIndex);
+        resetAutoPlay();
+      }
+
+      function currentSlide(n) {
+        currentIndex = n;
+        showSlide(currentIndex);
+        resetAutoPlay();
+      }
+
+      function autoPlay() {
+        currentIndex++;
+        showSlide(currentIndex);
+      }
+
+      let autoPlayInterval = setInterval(autoPlay, 5000); // Ubah slide setiap 5 detik
+
+      function resetAutoPlay() {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(autoPlay, 5000);
+      }
+
+      // Initialize
+      showSlide(currentIndex);
+    </script>
+  </body>
+</html>
